@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+  <legend class="border-bottom mb-4">Адрес проведения экзаменов</legend>
+<!-- Output table -->
+<div class="post-entry">
+  <table id="ExamPlacesTable">
+    <thead>
+      <tr>
+        <th>Подразделение</th>
+        <th>Адрес</th>
+        <th>Описание</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for examplace in object_list %}
+      <tr>
+        <td>{{ examplace.name }}</td>
+        <td>{{ examplace.address }}</td>
+        <td>{{ examplace.description }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

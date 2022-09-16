@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+  <div class="post-entry">
+    <h2>{{ infopost.title }}</h2>
+    <h6>Опубликовано (UTC): {{infopost.created_at}}</h6>
+    <p>{{ infopost.body }}</p>
+  </div>
+{% endblock content %}

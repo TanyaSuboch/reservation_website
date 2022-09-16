@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Профиль пользователя{% endblock %}
+{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+    <legend class="border-bottom mb-4">Профиль пользователя {{user.username}}</legend> 
+        <img class="rounded-circle account-img" src="{{ user.userprofile.photo.url }} " style="max-width:100px; max-height: 100px;"/>
+    {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form_errors">
+                {% for key, value in user_form.errors.items %}
+                    <strong>{{ value }}</strong>
+                {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="form-content">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="small mb-1">Фамилия, имя, отчество:</label>
+                            {{ user_form.last_name }} {{ user_form.first_name }} {{ user_form.patronymic_name }}
+                        <label class="small mb-1">Адрес электронной почты:</label>
+                            {{ user_form.email }}
+                        <label class="small mb-1">Идентификационный номер паспорта:</label>
+                            {{ user_form.passport_id }}
+                        <label class="small mb-1">Дата рождения:</label>
+                            {{ user_form.date_of_birth }}
+                        <label class="small mb-1">Город регистрации:</label>
+                            {{ user_form.registration_city }}
+                    </div>
+                    <div class="form-group">
+                        <a href="{% url 'password_change' %}">Изменить пароль</a>
+                        <hr>
+                        <label class="small mb-1">Изменить фотографию:</label>
+                        {{ profile_form.photo}}
+                    </div>
+                    <label class="small mb-1">Дополнительная информация:</label> {{ profile_form.additional_info }}
+                </div>
+            </div>
+            <br><br>
+            <button type="submit" class="btn btn-dark btn-lg">Сохранить изменения</button>
+            <button type="reset" class="btn btn-dark btn-lg">Отмена</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

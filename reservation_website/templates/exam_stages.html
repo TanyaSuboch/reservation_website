@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+  <legend class="border-bottom mb-4">Этапы экзамена для получения водительского удостоверения категории В</legend>
+  {% for examstage in object_list %}
+  <div class="post-entry">
+    <h4><a href="{% url 'examstage_detail' examstage.pk %}">{{ examstage.name }}</a></h4>
+  </div>
+  {% endfor %}
+  <h6><a href="{% url 'exam_places' %}">Места проведения экзамена</a></h6>
+{% endblock content %}
+

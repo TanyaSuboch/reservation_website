@@ -1,0 +1,9 @@
+{% extends 'base.html' %} &nbsp;{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+  <legend class="border-bottom mb-4">Войти в систему</legend>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">ОК</button>
+</form>
+{% endblock content %}

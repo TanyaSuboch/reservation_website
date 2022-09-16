@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+  <legend class="border-bottom mb-4">Описание этапа экзамена</legend>
+  <div class="exams-entry">
+    <h2>Этап экpаменa: {{ examstage.name }}</h2>
+    <h4>Периодичность сдачи: {{examstage.frequency}}</h4>
+    <p>Описание: {{examstage.description }}</p>
+  </div>
+{% endblock content %}
