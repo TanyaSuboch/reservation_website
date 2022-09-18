@@ -3,4 +3,32 @@
 {% block content %}
 <div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
     <legend class="border-bottom mb-4">Запись на экзамен</legend>
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-row">
+          <div class="col-md-5">
+              <div class="form-group">
+                  <label class="small mb-1">Этап экзамена:</label>
+                      {{ make_reservation_form.exam_stage }}
+                  <label class="small mb-1">Дата экзамена:</label>
+                      {{ make_reservation_form.exam_date }}
+                  <label class="small mb-1">Время экзамена:</label>
+                      {{ make_reservation_form.exam_time }}
+                  <label class="small mb-1">Место экзамена:</label>
+                      {{ make_reservation_form.exam_place }}
+                  <label class="small mb-1">Наличие оплаты:</label>
+                      {{ make_reservation_form.is_paid}}
+                  <label class="small mb-1">Подтверждение оплаты:</label>
+                      {{ make_reservation_form.payment_confirmation}}
+              </div>
+              <hr>
+              <div class="form-group">
+                  <a href="#">Оплатить экзамен</a>
+                  <hr>
+              </div>
+          </div>
+      </div>
+      <button type="submit" class="btn btn-dark btn-lg">Сохранить запись</button>
+      <button type="reset" class="btn btn-dark btn-lg">Отмена</button>
+  </form>
 {% endblock content %}

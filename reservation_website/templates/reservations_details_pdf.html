@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+  <legend class="border-bottom mb-4">Печать деталей записи на экзамен номер {{reservation.reservation_id}} пользователя 
+    {{user.last_name}} {{user.first_name}} {{user.patronymic_name}}</legend>
+<!-- Output table -->
+<div class="post-entry">
+  <table id="ReservationDetailsTable"></table>
+  <h1>Детали записи на экзамен номер {{reservation.reservation_id}} пользователя 
+    {{user.last_name}} {{user.first_name}} {{user.patronymic_name}}</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Этап экзамена:</th>
+        <th>Дата экзамена:</th>
+        <th>Время экзамена:</th>
+        <th>Место экзамена:</th>
+        <th>Адрес экзамена:</th>
+        <th>Наличие оплаты:</th>
+        <th>Статус записи:</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reservation in object_list %}
+        <tr>
+          <td>{{ reservation.exam_stage }}</td>
+          <td>{{reservation.exam_date}}</td>
+          <td>{{reservation.exam_time}}</td>
+          <td>{{reservation.exam_place}}</td>
+          <td>{{reservation.exam_place.address}}</td>
+          <td>{{reservation.is_paid}}</td>
+          <td>{{reservation.status}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+</body>
+  {% endfor %}
+{% endblock content %}

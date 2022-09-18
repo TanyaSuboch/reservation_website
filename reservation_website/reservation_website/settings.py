@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'reservation.apps.ReservationConfig',
     'exams.apps.ExamsConfig',
-    #'djreservation',
+   
 ]
 
 MIDDLEWARE = [
@@ -52,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'djreservation.middleware.ReservationMiddleware',
 ]
 
 ROOT_URLCONF = 'reservation_website.urls'
@@ -115,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'CET'
 
 USE_I18N = True
 
@@ -139,10 +138,9 @@ LOGOUT_REDIRECT_URL = 'home'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-IMAGEFIELD_FORMATS = {'account.userprofile.photo': {'square': ['default', ('crop', (100, 100))]}}
+USE_L10N = False
+DATE_INPUT_FORMATS = ('%d/%m/%Y','%d-%m-%Y','%Y-%m-%d', '%Y.%m.%d')
 
-#DEFAULT_FROM_EMAIL = "mail@example.com"
-#EMAIL_HOST = "localhost"
-#EMAIL_PORT = "1025"
+IMAGEFIELD_FORMATS = {'account.userprofile.photo': {'square': ['default', ('crop', (100, 100))]}}
 
 AUTH_USER_MODEL = 'account.User'

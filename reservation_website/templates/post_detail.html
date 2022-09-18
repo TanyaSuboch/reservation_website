@@ -2,8 +2,10 @@
  
 {% block content %}
   <div class="post-entry">
-    <h2>{{ infopost.title }}</h2>
-    <h6>Опубликовано (UTC): {{infopost.created_at}}</h6>
-    <p>{{ infopost.body }}</p>
+    <h2> {{ infopost.title }}</h2>
+    <hr>
+    <h6> Опубликовано: {{infopost.created_at}}</h6>
+    <hr>
+    <p> {{ infopost.body }}</p>
   </div>
 {% endblock content %}
