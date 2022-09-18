@@ -8,6 +8,8 @@
     <h4><a href="{% url 'examstage_detail' examstage.pk %}">{{ examstage.name }}</a></h4>
   </div>
   {% endfor %}
-  <h6><a href="{% url 'exam_places' %}">Места проведения экзамена</a></h6>
+  <hr>
+  <h6><a href="{% url 'exam_places' %}">Места проведения экзаменов</a></h6>
+  <hr>
 {% endblock content %}
 

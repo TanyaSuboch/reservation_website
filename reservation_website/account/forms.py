@@ -1,10 +1,9 @@
-from pyexpat import model
 from django import forms
-from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.views.decorators.csrf import csrf_exempt
 from django.db import transaction
 from .models import User, UserProfile
+from reservation_website.settings import DATE_INPUT_FORMATS
 
 
 class SignUpForm(UserCreationForm):
@@ -13,7 +12,20 @@ class SignUpForm(UserCreationForm):
     patronymic_name = forms.CharField(label='Отчество:', required=True)
     email = forms.EmailField(label='Адрес электронной почты:', required=True)
     passport_id = forms.CharField(label='Идентификационный номер паспорта:', required=True)
-    date_of_birth = forms.CharField(label='Дата рождения:', required=True)
+
+    YEAR_CHOICES = ('1955','1956','1957','1958','1959',
+        '1960','1961','1962','1963','1964','1965','1966','1967','1968','1969',
+        '1970','1971','1972','1973','1974','1975','1976','1977','1978','1979',
+        '1980','1981','1982','1983','1984','1985','1986','1987','1988','1989',
+        '1990','1991','1992','1993','1994','1995','1996','1997','1998','1999',
+        '2000','2001','2002','2003','2004'
+    )
+    
+    date_of_birth = forms.DateField(
+        label='Дата рождения:', 
+        localize=True,
+        widget=forms.SelectDateWidget(years=YEAR_CHOICES)
+    )
     registration_city = forms.CharField(label='Город регистрации:', required=True)
     
     class Meta(UserCreationForm.Meta):
@@ -60,10 +72,19 @@ class UpdateUserForm(forms.ModelForm):
         required=True, 
         widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-    date_of_birth = forms.CharField(label='Дата рождения:', 
-        max_length=10, 
-        required=True, 
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
+    YEAR_CHOICES = ('1955','1956','1957','1958','1959',
+        '1960','1961','1962','1963','1964','1965','1966','1967','1968','1969',
+        '1970','1971','1972','1973','1974','1975','1976','1977','1978','1979',
+        '1980','1981','1982','1983','1984','1985','1986','1987','1988','1989',
+        '1990','1991','1992','1993','1994','1995','1996','1997','1998','1999',
+        '2000','2001','2002','2003','2004'
+    )
+
+    date_of_birth = forms.DateField(
+        label='Дата рождения:', 
+        localize=True,
+        widget=forms.SelectDateWidget(years=YEAR_CHOICES)
+    )
 
     registration_city = forms.CharField(label='Город регистрации:', 
         max_length=50, 

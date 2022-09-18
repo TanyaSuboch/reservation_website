@@ -11,14 +11,14 @@ class ExamStage(models.Model):
         verbose_name = _('ExamStage')
         verbose_name_plural = _('ExamStages')
 
-    FREQUENCY = (
-        (10, 'Раз в 10 дней'),
-        (30, 'Раз в месяц')
-    )
+    FREQUENCY = [
+        ('Раз в 10 дней', 'Раз в 10 дней'),
+        ('Раз в месяц', 'Раз в месяц')
+    ]
 
     exam_stage_id = models.AutoField(unique=True, primary_key=True, null=False)
     name = models.CharField(max_length=50)
-    frequency = models.IntegerField(choices=FREQUENCY, default=10)
+    frequency = models.CharField(choices=FREQUENCY, default='Раз в 10 дней', max_length= 20)
     description = models.TextField()
      
     def __str__(self):
@@ -53,12 +53,12 @@ class Exam(models.Model):
         verbose_name_plural = _('Exams')
 
     RESULT = (
-        (0, 'Не сдан'),
-        (1, 'Сдан')
+        ('Не сдан', 'Не сдан'),
+        ('Cдан', 'Сдан')
     )
 
     exam_id = models.AutoField(unique=True, primary_key=True, null=False)
-    result = models.IntegerField(choices = RESULT,default='Не сдан')
+    result = models.CharField(choices = RESULT,default='Не сдан', max_length= 15)
     reservation_id = models.OneToOneField(Reservation, on_delete=models.CASCADE, default=None)
 
     def __str__(self):

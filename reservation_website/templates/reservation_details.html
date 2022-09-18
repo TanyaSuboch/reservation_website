@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+    <legend class="border-bottom mb-4">Детали записи на экзамен номер {{reservation.reservation_id}} пользователя 
+        {{user.last_name}} {{user.first_name}} {{user.patronymic_name}}</legend> 
+    <div class="post-entry">
+        <h4>Этап экзамена: {{ reservation.exam_stage }}</h4>
+        <h4>Дата экзамена: {{reservation.exam_date}}</h4>
+        <h4>Время экзамена: {{reservation.exam_time}}</h4>
+        <h4>Место экзамена: {{reservation.exam_place}}</h4>
+        <h4>Адрес экзамена: {{reservation.exam_place.address}}</h4>
+        <h4>Наличие оплаты: {{reservation.is_paid}}</h4>
+        <h4>Статус записи: {{reservation.status}}</h4>
+        <hr>
+        <h6><a href="{% url 'reservation_details_pdf' %}"> Сохранить / печатать как PDF </a></h6>
+        <hr>
+        <h6><a href="{% url 'reservations_list' %}"> Назад к списку записей </a></h6>
+    </div>
+{% endblock content %}

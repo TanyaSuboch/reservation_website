@@ -30,6 +30,8 @@
                             {{ user_form.passport_id }}
                         <label class="small mb-1">Дата рождения:</label>
                             {{ user_form.date_of_birth }}
+                    </div>
+                    <div>
                         <label class="small mb-1">Город регистрации:</label>
                             {{ user_form.registration_city }}
                     </div>
@@ -39,6 +41,9 @@
                         <label class="small mb-1">Изменить фотографию:</label>
                         {{ profile_form.photo}}
                     </div>
+                    <div class="form-group">
+                        <a href="{% url 'reservations_list' %}">Список личных записей на экзамен</a>
+                        <hr>
                     <label class="small mb-1">Дополнительная информация:</label> {{ profile_form.additional_info }}
                 </div>
             </div>

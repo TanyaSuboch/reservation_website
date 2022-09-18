@@ -1,5 +1,4 @@
 from django.urls import reverse_lazy
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -26,8 +25,7 @@ def profile(request, username):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request, 'Ваш профиль успешно обновлён')
-            return redirect(to='home')
+            return redirect(to='profile.html')
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateUserProfileForm(instance=request.user.userprofile)
@@ -37,5 +35,4 @@ def profile(request, username):
 
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     template_name = 'password_change.html'
-    success_message = "Ваш пароль успешно изменён"
     success_url = reverse_lazy('home')

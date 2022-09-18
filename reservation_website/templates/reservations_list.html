@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+<div class="content-section col-lg-12 col-md-12 col-sm-12 tutorial-style" style="min-height:65vh;">
+  <legend class="border-bottom mb-4">Список записей пользователя {{user.last_name}} {{user.first_name}} {{user.patronymic_name}}</legend>
+  {% for reservation in object_list %}
+    <div class="post-entry">
+      <h4><a href="{% url 'reservation_details' reservation.reservation_id %}"> Этап - {{ reservation.exam_stage }}, дата экзамена {{reservation.exam_date}} </a></h4>
+  </div>
+  {% endfor %}
+{% endblock content %}
